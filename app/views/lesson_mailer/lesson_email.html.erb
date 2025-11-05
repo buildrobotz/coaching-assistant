@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @lesson.title %></title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .lesson-content {
+      margin: 30px 0;
+    }
+    .lesson-content h1 {
+      color: #1a1a1a;
+      font-size: 28px;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #4F46E5;
+      padding-bottom: 10px;
+    }
+    .lesson-content h2 {
+      color: #2d2d2d;
+      font-size: 22px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    .lesson-content h3 {
+      color: #3d3d3d;
+      font-size: 18px;
+      margin-top: 25px;
+      margin-bottom: 12px;
+    }
+    .lesson-content p {
+      margin-bottom: 15px;
+    }
+    .lesson-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin: 20px 0;
+    }
+    .lesson-content ul, .lesson-content ol {
+      margin: 15px 0;
+      padding-left: 30px;
+    }
+    .lesson-content li {
+      margin-bottom: 8px;
+    }
+    .lesson-content blockquote {
+      border-left: 4px solid #4F46E5;
+      padding-left: 20px;
+      margin: 20px 0;
+      color: #555;
+      font-style: italic;
+    }
+    .lesson-content a {
+      color: #4F46E5;
+      text-decoration: none;
+    }
+    .lesson-content a:hover {
+      text-decoration: underline;
+    }
+    .lesson-content code {
+      background-color: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 14px;
+    }
+    .lesson-content pre {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+    .lesson-content pre code {
+      background-color: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    .action-buttons {
+      margin: 40px 0 30px 0;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      margin: 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+    .btn-complete {
+      background-color: #10B981;
+      color: white;
+    }
+    .btn-complete:hover {
+      background-color: #059669;
+      text-decoration: none;
+    }
+    .btn-next {
+      background-color: #4F46E5;
+      color: white;
+    }
+    .btn-next:hover {
+      background-color: #4338CA;
+      text-decoration: none;
+    }
+    .streak-footer {
+      background-color: #FEF3C7;
+      border-left: 4px solid #F59E0B;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 6px;
+    }
+    .streak-footer h3 {
+      margin: 0 0 10px 0;
+      color: #92400E;
+      font-size: 18px;
+    }
+    .streak-stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 10px;
+    }
+    .streak-stat {
+      font-size: 16px;
+      color: #78350F;
+    }
+    .streak-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #92400E;
+    }
+    .footer-note {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e5e5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lesson-content">
+      <%= raw @html_content %>
+    </div>
+
+    <div class="action-buttons">
+      <a href="<%= @complete_url %>" class="btn btn-complete">
+        ✓ Mark Complete
+      </a>
+      <a href="<%= @complete_next_url %>" class="btn btn-next">
+        ✓ Complete & Send Next Lesson
+      </a>
+    </div>
+
+    <div class="streak-footer">
+      <h3>🔥 Your Progress</h3>
+      <div class="streak-stats">
+        <div class="streak-stat">
+          Current Streak: <span class="streak-number"><%= @current_streak %></span> days
+        </div>
+        <div class="streak-stat">
+          Longest Streak: <span class="streak-number"><%= @longest_streak %></span> days
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <p>You're receiving this lesson as part of your coaching program.</p>
+      <p>Click "Mark Complete" to record your progress or "Complete & Send Next" to get your next lesson today (max 3 per day).</p>
+    </div>
+  </div>
+</body>
+</html>

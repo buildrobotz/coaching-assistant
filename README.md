@@ -303,7 +303,19 @@ puts "GMAIL_CLIENT_SECRET=#{CLIENT_SECRET}"
 
 Run it:
 ```bash
-ruby gmail_oauth.rb
+ruby lib/scripts/gmail_oauth_setup.rb
+```
+
+### 4. Test Email Configuration
+
+After setting up Gmail credentials, test the connection:
+
+```bash
+# Test connection to Gmail API
+bin/rails email:test_connection
+
+# Send a test email to verify everything works
+bin/rails email:send_test[your@email.com]
 ```
 
 ## Usage Guide
@@ -436,18 +448,20 @@ bin/rails db:migrate:status
 - **LessonDelivery**: Tracks sent/completed lessons
 - **DailyCompletion**: Enforces 3-lesson-per-day limit
 
-### Services (Coming in Phase 4+)
+### Services
 
-- **EmailProvider**: Email abstraction layer
-- **GmailProvider**: Gmail API implementation
-- **LessonRenderer**: Markdown → HTML converter
-- **StreakCalculator**: Manages streaks
-- **GithubLessonLoader**: Fetches lessons from GitHub
+- **EmailProvider**: ✅ Email abstraction layer for switching providers
+- **GmailProvider**: ✅ Gmail API implementation
+- **EmailSender**: ✅ Service for sending emails via providers
+- **LessonMailer**: ✅ Mailer for lesson and one-off emails
+- **LessonRenderer**: Markdown → HTML converter (Phase 3)
+- **StreakCalculator**: Manages streaks (Phase 5)
+- **GithubLessonLoader**: Fetches lessons from GitHub (Phase 3)
 
 ## Development Roadmap
 
 - [x] Phase 1: Rails setup + Database + Render instructions
-- [ ] Phase 4: Email provider abstraction + Gmail API
+- [x] Phase 4: Email provider abstraction + Gmail API
 - [ ] Phase 7: One-off email functionality (MVP!)
 - [ ] Phase 3: GitHub integration + Markdown rendering
 - [ ] Phase 5: Lesson delivery system + Scheduling
