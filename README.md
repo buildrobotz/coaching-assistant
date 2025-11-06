@@ -454,18 +454,26 @@ bin/rails db:migrate:status
 - **GmailProvider**: ✅ Gmail API implementation
 - **EmailSender**: ✅ Service for sending emails via providers
 - **LessonMailer**: ✅ Mailer for lesson and one-off emails
-- **LessonRenderer**: Markdown → HTML converter (Phase 3)
+- **MarkdownRenderer**: ✅ Markdown → HTML converter with syntax highlighting
 - **StreakCalculator**: Manages streaks (Phase 5)
 - **GithubLessonLoader**: Fetches lessons from GitHub (Phase 3)
+
+### Admin Controllers
+
+- **Dashboard**: ✅ Overview of clients, modules, and lessons
+- **Clients**: ✅ Full CRUD for managing clients
+- **OneOffEmails**: ✅ Send custom emails with markdown content
+- **CourseModules**: CRUD for modules (Phase 2)
+- **Lessons**: CRUD for lessons (Phase 2)
 
 ## Development Roadmap
 
 - [x] Phase 1: Rails setup + Database + Render instructions
 - [x] Phase 4: Email provider abstraction + Gmail API
-- [ ] Phase 7: One-off email functionality (MVP!)
-- [ ] Phase 3: GitHub integration + Markdown rendering
+- [x] Phase 7: One-off email functionality **(MVP!)**
+- [ ] Phase 3: GitHub integration + Enhanced markdown rendering
 - [ ] Phase 5: Lesson delivery system + Scheduling
-- [ ] Phase 2: Admin interface (CRUD)
+- [ ] Phase 2: Admin interface (Full CRUD for modules/lessons)
 - [ ] Phase 8: Preview functionality
 - [ ] Phase 9: Final deployment polish
 
