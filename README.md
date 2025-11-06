@@ -245,78 +245,30 @@ Your app will be available at: `https://coaching-assistant.onrender.com`
 
 ## Gmail API Setup
 
-### 1. Create Google Cloud Project
+📧 **Complete Gmail setup instructions are available in [GMAIL_SETUP.md](GMAIL_SETUP.md)**
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project: "Coaching Assistant"
-3. Enable Gmail API:
-   - Go to "APIs & Services" → "Library"
-   - Search for "Gmail API"
-   - Click "Enable"
+The setup involves:
+1. Creating a Google Cloud Project
+2. Enabling Gmail API
+3. Configuring OAuth consent screen
+4. Getting your Client ID and Client Secret
+5. Obtaining a refresh token using our setup script
+6. Testing your configuration
 
-### 2. Create OAuth Credentials
+### Quick Start
 
-1. Go to "APIs & Services" → "Credentials"
-2. Click "Create Credentials" → "OAuth client ID"
-3. Configure OAuth consent screen (if prompted)
-4. Application type: "Desktop app"
-5. Name: "Coaching Assistant OAuth"
-6. Click "Create"
-7. Download the JSON file
-
-### 3. Get Refresh Token
-
-Run this Ruby script locally (save as `gmail_oauth.rb`):
-
-```ruby
-require 'googleauth'
-require 'googleauth/stores/file_token_store'
-
-CLIENT_ID = 'your_client_id'
-CLIENT_SECRET = 'your_client_secret'
-SCOPE = 'https://www.googleapis.com/auth/gmail.send'
-REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
-
-client_id = Google::Auth::ClientId.new(CLIENT_ID, CLIENT_SECRET)
-token_store = Google::Auth::Stores::FileTokenStore.new(file: 'tokens.yaml')
-authorizer = Google::Auth::UserAuthorizer.new(client_id, SCOPE, token_store)
-
-user_id = 'default'
-credentials = authorizer.get_credentials(user_id)
-
-if credentials.nil?
-  url = authorizer.get_authorization_url(base_url: REDIRECT_URI)
-  puts "Open this URL in your browser:"
-  puts url
-  puts "\nEnter the authorization code:"
-  code = gets.chomp
-  credentials = authorizer.get_and_store_credentials_from_code(
-    user_id: user_id, code: code, base_url: REDIRECT_URI
-  )
-end
-
-puts "\n=== Add these to your .env file ==="
-puts "GMAIL_REFRESH_TOKEN=#{credentials.refresh_token}"
-puts "GMAIL_CLIENT_ID=#{CLIENT_ID}"
-puts "GMAIL_CLIENT_SECRET=#{CLIENT_SECRET}"
-```
-
-Run it:
 ```bash
+# Run the OAuth setup script
 ruby lib/scripts/gmail_oauth_setup.rb
-```
 
-### 4. Test Email Configuration
+# Follow the prompts and copy the credentials to your .env file
 
-After setting up Gmail credentials, test the connection:
-
-```bash
-# Test connection to Gmail API
+# Test your setup
 bin/rails email:test_connection
-
-# Send a test email to verify everything works
 bin/rails email:send_test[your@email.com]
 ```
+
+**See [GMAIL_SETUP.md](GMAIL_SETUP.md) for detailed step-by-step instructions with screenshots guidance.**
 
 ## Usage Guide
 
