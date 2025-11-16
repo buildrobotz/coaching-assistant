@@ -41,6 +41,7 @@ gem "whenever", require: false
 # Email services
 gem "google-apis-gmail_v1", "~> 0.40"
 gem "googleauth", "~> 1.0"
+gem "resend", "~> 0.8"
 
 # Markdown processing
 gem "redcarpet", "~> 3.6"

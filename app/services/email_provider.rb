@@ -8,6 +8,8 @@ class EmailProvider
       case provider_name
       when 'gmail'
         GmailProvider.new
+      when 'resend'
+        ResendProvider.new
       when 'postmark'
         # Future: PostmarkProvider.new
         raise NotImplementedError, "Postmark provider not yet implemented"
